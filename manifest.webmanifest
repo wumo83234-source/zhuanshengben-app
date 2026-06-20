@@ -1,0 +1,17 @@
+{
+  "name": "河南专升本上岸助手",
+  "short_name": "上岸助手",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f7f4",
+  "theme_color": "#a2b5a5",
+  "description": "专升本备考计划、手写草稿、AI错因诊断和错题回流工具。",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
