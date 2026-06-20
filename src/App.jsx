@@ -22,12 +22,13 @@ import {
   UserRound,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { MATERIAL_LIBRARY } from "./data/materials";
 
 const DB_NAME = "zsb-assistant-db";
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 const STORE_NAME = "app-state";
 const STATE_KEY = "main";
-const STATE_SCHEMA_VERSION = 2;
+const STATE_SCHEMA_VERSION = 3;
 
 const initialState = {
   schemaVersion: STATE_SCHEMA_VERSION,
@@ -42,38 +43,71 @@ const initialState = {
     {
       id: "M001",
       subject: "数学",
-      module: "极限",
-      title: "等价无穷小替换",
+      module: "历年真题",
+      title: "2010-2025 高数真题",
       level: "未开始",
       priority: "S",
       wrongCount: 0,
       weak: "待学习",
-      mistake: "变量趋近非 0 常数时，不能直接套 sinx≈x，需要先判断是否要换元。",
+      mistake: "已收录 16 份真题资料，后续可按年份拆题。",
     },
     {
       id: "M002",
       subject: "数学",
-      module: "连续",
-      title: "闭区间零点定理",
+      module: "答案解析",
+      title: "高数真题答案解析",
       level: "未开始",
       priority: "A",
       wrongCount: 0,
       weak: "待学习",
-      mistake: "区分零点存在定理和介值定理的使用条件。",
+      mistake: "已收录 17 份答案解析，可用于错题复盘和步骤核对。",
+    },
+    {
+      id: "M003",
+      subject: "数学",
+      module: "公式",
+      title: "高数公式与初等数学补充",
+      level: "未开始",
+      priority: "A",
+      wrongCount: 0,
+      weak: "待学习",
+      mistake: "已收录常用公式和零基础补充公式。",
+    },
+    {
+      id: "M004",
+      subject: "数学",
+      module: "讲义习题",
+      title: "高数讲义、笔记、章节习题",
+      level: "未开始",
+      priority: "A",
+      wrongCount: 0,
+      weak: "待学习",
+      mistake: "已收录教材讲义、笔记总结、章节习题集和模拟卷。",
     },
     {
       id: "E001",
       subject: "英语",
-      module: "语法",
-      title: "非谓语主动/被动判断",
+      module: "历年真题",
+      title: "2006-2025 公共英语真题",
       level: "未开始",
       priority: "S",
       wrongCount: 0,
       weak: "待学习",
-      mistake: "先找逻辑主语，再判断主动或被动，不直接凭中文语感翻译。",
+      mistake: "已收录历年真题和近年真题 PDF，可按年份拆题。",
     },
     {
       id: "E002",
+      subject: "英语",
+      module: "答案解析",
+      title: "公共英语真题答案解析",
+      level: "未开始",
+      priority: "S",
+      wrongCount: 0,
+      weak: "待学习",
+      mistake: "已收录答案解析资料，可用于自动核对和复盘。",
+    },
+    {
+      id: "E003",
       subject: "英语",
       module: "词汇",
       title: "高频核心词汇",
@@ -81,11 +115,44 @@ const initialState = {
       priority: "A",
       wrongCount: 0,
       weak: "待学习",
-      mistake: "导入词表后按词频、错频和真题语境拆分。",
+      mistake: "已收录 3800 词、核心单词、常用短语和固定搭配。",
+    },
+    {
+      id: "E004",
+      subject: "英语",
+      module: "语法",
+      title: "语法口诀与思维导图",
+      level: "未开始",
+      priority: "A",
+      wrongCount: 0,
+      weak: "待学习",
+      mistake: "已收录语法口诀、语法思维导图和专项语法资料。",
+    },
+    {
+      id: "E005",
+      subject: "英语",
+      module: "写作",
+      title: "作文模板与应用文",
+      level: "未开始",
+      priority: "A",
+      wrongCount: 0,
+      weak: "待学习",
+      mistake: "已收录 20 份作文模板、万能句式和应用文模板。",
+    },
+    {
+      id: "E006",
+      subject: "英语",
+      module: "专项",
+      title: "阅读、完形、翻译、必刷题",
+      level: "未开始",
+      priority: "A",
+      wrongCount: 0,
+      weak: "待学习",
+      mistake: "已收录阅读题型、完形技巧、翻译资料和专项必刷题。",
     },
   ],
   wrongQuestions: [],
-  library: [],
+  library: MATERIAL_LIBRARY,
 };
 
 function openDb() {
@@ -519,6 +586,15 @@ function WrongPage({ wrongQuestions }) {
 }
 
 function ProfilePage({ library, onReset, onUpload }) {
+  const [subject, setSubject] = useState("全部");
+  const [category, setCategory] = useState("全部");
+  const subjects = ["全部", "数学", "英语"];
+  const subjectFiltered = subject === "全部" ? library : library.filter((item) => item.subject === subject);
+  const categories = ["全部", ...Array.from(new Set(subjectFiltered.map((item) => item.category)))];
+  const visible = category === "全部" ? subjectFiltered : subjectFiltered.filter((item) => item.category === category);
+  const mathCount = library.filter((item) => item.subject === "数学").length;
+  const englishCount = library.filter((item) => item.subject === "英语").length;
+
   return (
     <div className="space-y-5 pb-24">
       <section className="rounded-[28px] border border-sage-100 bg-white p-5 shadow-panel">
@@ -528,10 +604,14 @@ function ProfilePage({ library, onReset, onUpload }) {
           </div>
           <div>
             <h2 className="text-lg font-black">我的上岸档案</h2>
-            <p className="text-sm font-bold text-sage-600">当前为零进度 · 等待导入题库</p>
+            <p className="text-sm font-bold text-sage-600">已导入资料 {library.length} 份 · 学习进度仍为 0</p>
           </div>
         </div>
       </section>
+      <div className="grid grid-cols-2 gap-3">
+        <Metric label="数学资料" value={mathCount} />
+        <Metric label="英语资料" value={englishCount} />
+      </div>
       <button className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-charcoal text-sm font-black text-white" onClick={onUpload}>
         <FileUp size={18} />
         记录一份待导入资料
@@ -539,18 +619,43 @@ function ProfilePage({ library, onReset, onUpload }) {
       <button className="h-11 w-full rounded-full border border-sage-200 bg-white text-sm font-black text-sage-700" onClick={onReset}>
         清空本地学习数据
       </button>
-      <SectionTitle icon={Layers} title="资料库" action={`${library.length} 份资料`} />
+      <SectionTitle icon={Layers} title="资料库" action={`${visible.length} / ${library.length} 份`} />
       {library.length === 0 ? (
         <EmptyState title="资料库为空" text="你可以把数学、英语题库资料发给我，我会按科目和考点重建数据。" />
       ) : (
         <div className="space-y-3">
-          {library.map((item) => (
+          <div className="grid grid-cols-3 gap-2 rounded-full bg-softGray p-1">
+            {subjects.map((item) => (
+              <button
+                key={item}
+                className={`h-9 rounded-full text-xs font-black ${subject === item ? "bg-white text-charcoal shadow" : "text-sage-600"}`}
+                onClick={() => {
+                  setSubject(item);
+                  setCategory("全部");
+                }}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+          <div className="flex gap-2 overflow-x-auto pb-1">
+            {categories.map((item) => (
+              <button
+                key={item}
+                className={`shrink-0 rounded-full px-3 py-2 text-xs font-black ${category === item ? "bg-charcoal text-white" : "bg-softGray text-sage-700"}`}
+                onClick={() => setCategory(item)}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+          {visible.map((item) => (
             <article key={item.id} className="flex items-center justify-between gap-3 rounded-[20px] border border-sage-100 bg-softGray p-4">
               <div className="min-w-0">
                 <h3 className="truncate text-sm font-black">{item.title}</h3>
-                <p className="text-xs font-bold text-sage-600">{item.tag}</p>
+                <p className="truncate text-xs font-bold text-sage-600">{item.subject} · {item.category} · {item.relativePath}</p>
               </div>
-              <span className="rounded-full bg-white px-3 py-1 text-[11px] font-black text-sage-600">{item.status}</span>
+              <span className="shrink-0 rounded-full bg-white px-3 py-1 text-[11px] font-black text-sage-600">{item.extension}</span>
             </article>
           ))}
         </div>
