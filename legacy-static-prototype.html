@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>河南专升本上岸助手</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Nunito:wght@500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sage: #A2B5A5;
+      --sage-dark: #657A69;
+      --rose: #EAC8D1;
+      --blue: #C0CFE6;
+      --ice: #D4E0EE;
+      --charcoal: #1B1B1B;
+      --ink-soft: #66706A;
+      --paper: #F6F8F6;
+      --white: #FFFFFF;
+      --line: rgba(162, 181, 165, 0.22);
+      --shadow: 0 18px 48px rgba(162, 181, 165, 0.14);
+      --shadow-strong: 0 32px 70px rgba(35, 45, 38, 0.14);
+      --radius-xl: 36px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 14% 16%, rgba(234, 200, 209, 0.28), transparent 28%),
+        radial-gradient(circle at 82% 4%, rgba(192, 207, 230, 0.38), transparent 24%),
+        linear-gradient(135deg, #FAFBFA 0%, #EFF3EF 100%);
+      color: var(--charcoal);
+      font-family: "Nunito", "Noto Sans SC", sans-serif;
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .page {
+      width: min(1320px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 26px 0 34px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--sage), #CBD8CD);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+      box-shadow: 0 14px 30px rgba(162, 181, 165, 0.28);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.1;
+      font-weight: 900;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: var(--sage-dark);
+      font-weight: 700;
+    }
+
+    .mode-switch {
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 10px 24px rgba(162, 181, 165, 0.10);
+      backdrop-filter: blur(16px);
+    }
+
+    .mode-switch button {
+      min-width: 88px;
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--sage-dark);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .mode-switch button.active {
+      color: var(--charcoal);
+      background: white;
+      box-shadow: 0 8px 18px rgba(37, 49, 40, 0.10);
+    }
+
+    .showcase {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .editorial {
+      position: sticky;
+      top: 24px;
+      min-height: 640px;
+      padding: 42px;
+      border-radius: 44px;
+      background:
+        linear-gradient(145deg, rgba(162, 181, 165, 0.95), rgba(188, 204, 190, 0.86)),
+        var(--sage);
+      color: white;
+      overflow: hidden;
+      box-shadow: var(--shadow-strong);
+    }
+
+    .editorial::before {
+      content: "";
+      position: absolute;
+      width: 390px;
+      height: 170px;
+      left: -82px;
+      bottom: 82px;
+      border: 2px solid rgba(255, 255, 255, 0.38);
+      border-color: rgba(255, 255, 255, 0.38) transparent transparent transparent;
+      border-radius: 50%;
+      transform: rotate(-7deg);
+    }
+
+    .editorial::after {
+      content: "";
+      position: absolute;
+      right: -34px;
+      bottom: -46px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .editorial .eyebrow {
+      position: relative;
+      z-index: 1;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.88;
+    }
+
+    .editorial h2 {
+      position: relative;
+      z-index: 1;
+      width: min(360px, 100%);
+      margin: 88px 0 16px;
+      font-size: 46px;
+      line-height: 1.12;
+      font-weight: 900;
+    }
+
+    .editorial p {
+      position: relative;
+      z-index: 1;
+      width: min(330px, 100%);
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 14px;
+      line-height: 1.75;
+      font-weight: 700;
+    }
+
+    .floating-phone {
+      position: absolute;
+      right: -28px;
+      top: 54px;
+      width: 205px;
+      height: 390px;
+      border-radius: 32px;
+      background: #FBFCFB;
+      transform: rotate(13deg);
+      box-shadow: 0 26px 55px rgba(26, 39, 29, 0.20);
+      padding: 18px;
+      color: var(--charcoal);
+      z-index: 0;
+    }
+
+    .floating-phone.small {
+      right: 128px;
+      top: 212px;
+      width: 158px;
+      height: 308px;
+      transform: rotate(-18deg);
+      opacity: 0.96;
+    }
+
+    .mini-card {
+      height: 112px;
+      border-radius: 24px;
+      background: var(--sage);
+      padding: 13px;
+      color: white;
+      margin-bottom: 14px;
+    }
+
+    .mini-line {
+      height: 8px;
+      border-radius: 99px;
+      background: rgba(27, 27, 27, 0.10);
+      margin: 8px 0;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mini-list div {
+      height: 42px;
+      border-radius: 15px;
+      background: var(--paper);
+      border: 1px solid rgba(162, 181, 165, 0.15);
+    }
+
+    .device-wrap {
+      display: flex;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .device {
+      position: relative;
+      width: min(430px, 100%);
+      height: 850px;
+      border: 10px solid #EAF0EA;
+      border-radius: 48px;
+      background: white;
+      box-shadow: var(--shadow-strong);
+      overflow: hidden;
+      transition: width 260ms ease, height 260ms ease, border-radius 260ms ease;
+    }
+
+    .device.tablet {
+      width: min(920px, 100%);
+      height: 680px;
+      border-radius: 42px;
+    }
+
+    .status {
+      height: 36px;
+      padding: 12px 22px 0;
+      display: flex;
+      justify-content: space-between;
+      color: #809084;
+      font-size: 11px;
+      font-weight: 900;
+      user-select: none;
+    }
+
+    .app {
+      height: calc(100% - 36px);
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(246, 248, 246, 0.94), rgba(255, 255, 255, 0.98) 38%),
+        white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 18px 20px 104px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--sage) transparent;
+    }
+
+    .device.tablet .content {
+      padding: 22px 28px 92px;
+    }
+
+    .content::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .content::-webkit-scrollbar-thumb {
+      background: var(--sage);
+      border-radius: 999px;
+    }
+
+    .app-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .app-head small {
+      display: block;
+      color: var(--sage-dark);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .app-head h3 {
+      margin: 4px 0 0;
+      font-size: 20px;
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--ice));
+      border: 3px solid white;
+      box-shadow: 0 10px 24px rgba(162, 181, 165, 0.20);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #6D646B;
+      flex: 0 0 auto;
+    }
+
+    .tab-page {
+      display: none;
+    }
+
+    .tab-page.active {
+      display: block;
+      animation: rise 220ms ease both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      padding: 22px;
+      background: linear-gradient(135deg, var(--sage), #C2D0C4);
+      color: white;
+      box-shadow: 0 18px 40px rgba(162, 181, 165, 0.22);
+      margin-bottom: 14px;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -22px;
+      top: -42px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+    }
+
+    .hero-card b {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--sage-dark);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-card h4 {
+      width: min(320px, 76%);
+      margin: 18px 0 8px;
+      font-size: 22px;
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .hero-card p {
+      width: min(340px, 86%);
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 12px;
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.74);
+      padding: 16px;
+      box-shadow: 0 12px 34px rgba(162, 181, 165, 0.08);
+    }
+
+    .stat span {
+      display: block;
+      color: var(--sage-dark);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 27px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0 10px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .section-title small {
+      color: var(--sage-dark);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .schedule {
+      display: grid;
+      gap: 10px;
+    }
+
+    .task {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 12px 24px rgba(162, 181, 165, 0.08);
+    }
+
+    .task.locked {
+      background: rgba(234, 200, 209, 0.24);
+      border-color: rgba(234, 200, 209, 0.72);
+    }
+
+    .task time {
+      color: var(--sage-dark);
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .task h5 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .task p {
+      margin: 3px 0 0;
+      color: #7C8880;
+      font-size: 11px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 24px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--sage-dark);
+      font-size: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .action-card {
+      min-height: 132px;
+      padding: 16px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.78);
+      text-align: left;
+      box-shadow: 0 14px 30px rgba(162, 181, 165, 0.09);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .action-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .icon-tile {
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      background: var(--paper);
+      display: grid;
+      place-items: center;
+      color: var(--sage-dark);
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .action-card h4 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .action-card p {
+      margin: 6px 0 0;
+      color: #7C8880;
+      font-size: 11px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.78);
+      padding: 18px;
+      box-shadow: 0 16px 36px rgba(162, 181, 165, 0.10);
+    }
+
+    .quiz-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .device.tablet .quiz-layout {
+      grid-template-columns: minmax(0, 4.5fr) minmax(0, 5.5fr);
+      align-items: stretch;
+    }
+
+    .question-card h4,
+    .board-card h4 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+
+    .question {
+      padding: 14px;
+      border-radius: 20px;
+      background: var(--paper);
+      border: 1px solid rgba(162, 181, 165, 0.16);
+      font-size: 14px;
+      line-height: 1.65;
+      font-weight: 800;
+    }
+
+    .formula {
+      display: block;
+      margin-top: 10px;
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--sage-dark);
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .input-row input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--charcoal);
+      outline: none;
+      font-weight: 800;
+    }
+
+    .input-row input {
+      height: 42px;
+      padding: 0 14px;
+    }
+
+    textarea {
+      min-height: 74px;
+      resize: vertical;
+      padding: 12px;
+      line-height: 1.55;
+      font-size: 12px;
+    }
+
+    .primary,
+    .secondary,
+    .tool-btn {
+      height: 42px;
+      border-radius: 999px;
+      padding: 0 16px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .primary {
+      background: var(--charcoal);
+      color: white;
+    }
+
+    .primary:hover,
+    .secondary:hover,
+    .tool-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--sage-dark);
+    }
+
+    .tool-btn {
+      min-width: 42px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--charcoal);
+    }
+
+    .tool-btn.active {
+      color: white;
+      background: var(--sage);
+      border-color: var(--sage);
+    }
+
+    .tool-btn.danger {
+      color: #8E5863;
+      background: rgba(234, 200, 209, 0.22);
+      border-color: rgba(234, 200, 209, 0.68);
+    }
+
+    .board-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .segmented,
+    .tool-group {
+      display: flex;
+      gap: 6px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(246, 248, 246, 0.78);
+    }
+
+    .segmented button,
+    .tool-group button {
+      height: 30px;
+      min-width: 34px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--sage-dark);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .segmented button.active,
+    .tool-group button.active {
+      color: var(--charcoal);
+      background: white;
+      box-shadow: 0 6px 14px rgba(162, 181, 165, 0.16);
+    }
+
+    .swatch {
+      width: 27px;
+      min-width: 27px !important;
+      padding: 0 !important;
+      border: 2px solid transparent !important;
+      color: transparent !important;
+    }
+
+    .swatch.active {
+      border-color: var(--charcoal) !important;
+      box-shadow: 0 0 0 3px white inset !important;
+    }
+
+    .canvas-shell {
+      position: relative;
+      height: 276px;
+      border-radius: 28px;
+      border: 1px solid rgba(162, 181, 165, 0.26);
+      background:
+        linear-gradient(rgba(162, 181, 165, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(162, 181, 165, 0.08) 1px, transparent 1px),
+        #FBFDFB;
+      background-size: 28px 28px;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    .device.tablet .canvas-shell {
+      min-height: 374px;
+      height: calc(100vh - 318px);
+      max-height: 420px;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    .warning {
+      border: 1px solid rgba(234, 200, 209, 0.86);
+      background: rgba(234, 200, 209, 0.20);
+      color: #7E4F5B;
+      border-radius: 18px;
+      padding: 12px;
+      font-size: 12px;
+      line-height: 1.55;
+      font-weight: 900;
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(162, 181, 165, 0.18);
+      flex-wrap: wrap;
+    }
+
+    .stars {
+      display: flex;
+      gap: 5px;
+    }
+
+    .stars button {
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: var(--paper);
+      color: #C8D1CB;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .stars button.active {
+      color: white;
+      background: var(--sage);
+    }
+
+    .switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 900;
+      color: #7E4F5B;
+    }
+
+    .switch input {
+      appearance: none;
+      width: 43px;
+      height: 24px;
+      border-radius: 999px;
+      background: #DDE5DE;
+      position: relative;
+      outline: none;
+    }
+
+    .switch input::after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
+      transition: left 160ms ease;
+    }
+
+    .switch input:checked {
+      background: var(--rose);
+    }
+
+    .switch input:checked::after {
+      left: 22px;
+    }
+
+    .analysis-box {
+      display: none;
+      margin-top: 14px;
+      gap: 10px;
+    }
+
+    .analysis-box.active {
+      display: grid;
+    }
+
+    .diagnosis-card {
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: #FBFDFB;
+      padding: 13px;
+    }
+
+    .diagnosis-card b {
+      display: block;
+      color: var(--sage-dark);
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+
+    .diagnosis-card p {
+      margin: 0;
+      color: #65706A;
+      font-size: 12px;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .knowledge-list,
+    .wrong-list,
+    .library-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .list-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.78);
+      padding: 15px;
+      box-shadow: 0 12px 28px rgba(162, 181, 165, 0.08);
+    }
+
+    .list-card h4 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .list-card p {
+      margin: 8px 0 0;
+      color: #7C8880;
+      font-size: 12px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .card-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .thumb {
+      margin-top: 10px;
+      min-height: 86px;
+      border-radius: 18px;
+      border: 1px dashed rgba(162, 181, 165, 0.50);
+      background:
+        linear-gradient(rgba(162, 181, 165, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(162, 181, 165, 0.07) 1px, transparent 1px),
+        #FAFCFA;
+      background-size: 18px 18px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: #9AA69D;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: white;
+    }
+
+    .dock {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      height: 68px;
+      border: 1px solid rgba(162, 181, 165, 0.24);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 42px rgba(162, 181, 165, 0.22);
+      backdrop-filter: blur(18px);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3px;
+      padding: 8px;
+      z-index: 20;
+    }
+
+    .device.tablet .dock {
+      width: 390px;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      border-radius: 999px;
+    }
+
+    .nav {
+      border-radius: 22px;
+      background: transparent;
+      color: #9AA69D;
+      font-size: 19px;
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+      gap: 2px;
+    }
+
+    .nav span {
+      display: block;
+      font-size: 9px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .nav.active {
+      color: var(--charcoal);
+      background: var(--paper);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      top: 86px;
+      transform: translate(-50%, -10px);
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--charcoal);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.active {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .modal {
+      position: absolute;
+      inset: 0;
+      z-index: 40;
+      background: rgba(246, 248, 246, 0.74);
+      backdrop-filter: blur(12px);
+      display: none;
+      place-items: center;
+      padding: 22px;
+    }
+
+    .modal.active {
+      display: grid;
+    }
+
+    .modal-card {
+      width: min(620px, 100%);
+      max-height: 92%;
+      overflow: auto;
+      border-radius: 32px;
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-strong);
+      padding: 22px;
+    }
+
+    .modal-card h3 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1060px) {
+      .showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .editorial {
+        position: relative;
+        min-height: 360px;
+      }
+
+      .floating-phone {
+        top: 38px;
+      }
+
+      .floating-phone.small {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .editorial h2 {
+        width: min(300px, 100%);
+        font-size: 40px;
+      }
+
+      .editorial p {
+        width: min(290px, 100%);
+      }
+
+      .floating-phone {
+        right: -156px;
+        top: 82px;
+        opacity: 0.48;
+      }
+
+      .floating-phone.small {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 18px, 1320px);
+        padding-top: 14px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .mode-switch {
+        width: 100%;
+      }
+
+      .mode-switch button {
+        flex: 1;
+      }
+
+      .editorial {
+        display: none;
+      }
+
+      .device {
+        width: 100%;
+        height: calc(100vh - 120px);
+        min-height: 700px;
+        border-radius: 36px;
+        border-width: 7px;
+      }
+
+      .device.tablet {
+        width: 100%;
+        height: calc(100vh - 120px);
+      }
+
+      .content,
+      .device.tablet .content {
+        padding: 16px 14px 96px;
+      }
+
+      .actions-grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .task {
+        grid-template-columns: 62px 1fr;
+      }
+
+      .task .pill {
+        grid-column: 1 / -1;
+        justify-self: start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toast" id="toast">提示</div>
+
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark">升</div>
+        <div>
+          <h1>河南专升本上岸助手</h1>
+          <p>手写思路诊断 · 直播避让计划 · iPad 自适应</p>
+        </div>
+      </div>
+      <div class="mode-switch" aria-label="设备视图">
+        <button class="active" id="phoneMode" type="button">手机</button>
+        <button id="tabletMode" type="button">iPad 横屏</button>
+      </div>
+    </header>
+
+    <section class="showcase">
+      <aside class="editorial" aria-label="应用视觉展示">
+        <div class="eyebrow">Premium Study App</div>
+        <h2>把草稿里的第一步，变成真正的提分线索。</h2>
+        <p>为时间碎片化的河南专升本考生设计：自动避开直播时段，保留每一次手写推演，并让 AI 诊断“为什么会这样想”。</p>
+        <div class="floating-phone" aria-hidden="true">
+          <div class="mini-card">
+            <strong>今日保底计划</strong>
+            <div class="mini-line"></div>
+            <div class="mini-line" style="width:72%"></div>
+          </div>
+          <div class="mini-list">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="floating-phone small" aria-hidden="true">
+          <div class="mini-card" style="background:var(--rose); color:#7E4F5B">
+            <strong>思路把脉</strong>
+            <div class="mini-line"></div>
+            <div class="mini-line" style="width:62%"></div>
+          </div>
+          <div class="mini-list">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="device-wrap">
+        <section class="device" id="device">
+          <div class="status">
+            <span>15:30</span>
+            <span>5G · 100%</span>
+          </div>
+
+          <div class="app">
+            <div class="content" id="content">
+              <div class="app-head">
+                <div>
+                  <small id="currentModeLabel">Tablet Ready</small>
+                  <h3 id="pageTitle">今天先稳住保底分</h3>
+                </div>
+                <div class="avatar">岸</div>
+              </div>
+
+              <section class="tab-page active" id="homePage">
+                <div class="hero-card">
+                  <b>Sage Plan</b>
+                  <h4>已自动避让 09:00-11:00 与 18:00-20:00</h4>
+                  <p>剩余高质量时段优先安排高数极限、英语翻译和错题复盘，避免把难任务塞进直播前后。</p>
+                </div>
+
+                <div class="stats">
+                  <div class="stat">
+                    <span>今日可学</span>
+                    <strong>5.5h</strong>
+                  </div>
+                  <div class="stat">
+                    <span>薄弱考点</span>
+                    <strong>12</strong>
+                  </div>
+                </div>
+
+                <div class="section-title">
+                  <span>今日任务</span>
+                  <small>直播锁定时间已屏蔽</small>
+                </div>
+                <div class="schedule" id="scheduleList"></div>
+              </section>
+
+              <section class="tab-page" id="practicePage">
+                <div class="hero-card" style="background:linear-gradient(135deg,#B3C4B6,#D4E0EE);">
+                  <b>Practice</b>
+                  <h4>先写草稿，再让诊断看见思路。</h4>
+                  <p>每道题保存 Page 1 / Page 2 两页笔迹，提交后可回流到错题本。</p>
+                </div>
+                <div class="actions-grid">
+                  <button class="action-card" type="button" data-start="高数极限">
+                    <div class="icon-tile">∫</div>
+                    <h4>高数极限专练</h4>
+                    <p>围绕等价无穷小、换元、趋近方向做手写推演。</p>
+                  </button>
+                  <button class="action-card" type="button" data-start="英语翻译">
+                    <div class="icon-tile">A</div>
+                    <h4>英语翻译复盘</h4>
+                    <p>记录翻译拆句过程，并标记语法直觉偏差。</p>
+                  </button>
+                  <button class="action-card" type="button" data-start="错题二刷">
+                    <div class="icon-tile">↻</div>
+                    <h4>错题二刷</h4>
+                    <p>从严重弱点池拉起原题，保留第二次笔迹。</p>
+                  </button>
+                  <button class="action-card" type="button" data-start="变式突破">
+                    <div class="icon-tile">≠</div>
+                    <h4>变式突破</h4>
+                    <p>生成同知识点但条件不同的 2 道高频变式。</p>
+                  </button>
+                </div>
+              </section>
+
+              <section class="tab-page" id="quizPage">
+                <div class="quiz-layout">
+                  <article class="panel question-card">
+                    <div class="card-row">
+                      <span class="pill" id="quizType">高数极限</span>
+                      <button class="secondary" type="button" id="exitQuiz">退出</button>
+                    </div>
+                    <h4 style="margin-top:14px;">题目</h4>
+                    <div class="question">
+                      求下列极限，并写出换元或等价替换的适用条件。
+                      <span class="formula">lim<sub>x→π</sub> sin(x) / (x - π)</span>
+                    </div>
+                    <div class="input-row">
+                      <input id="answerInput" placeholder="填写最终答案" value="-1" />
+                      <button class="primary" id="submitAnswer" type="button">核对</button>
+                    </div>
+                    <textarea id="thinkingInput" placeholder="简要写下你第一步想怎么做">看到 sin(x) 就想直接用 sin(x)≈x，但 x 不是趋近 0。</textarea>
+
+                    <div class="rating-row">
+                      <div>
+                        <div style="font-size:12px;font-weight:900;">掌握度自评</div>
+                        <div class="stars" id="stars"></div>
+                      </div>
+                      <label class="switch">
+                        <input id="guessSwitch" type="checkbox" />
+                        靠蒙做对
+                      </label>
+                    </div>
+
+                    <div class="analysis-box" id="analysisBox">
+                      <div class="warning">⚠️ 手写内容识别可能不准确，请人工核对手写草稿图。本系统不会在识别不精细时伪造识别，敬请知悉。</div>
+                      <div class="diagnosis-card">
+                        <b>拟真 OCR 识别</b>
+                        <p>lim(x→π) sin(x)/(x-π)，草稿中出现 “sin x≈x” 的直接替换痕迹，置信度 78%。</p>
+                      </div>
+                      <button class="primary" id="runDiagnosis" type="button">开始诊断</button>
+                    </div>
+                  </article>
+
+                  <article class="panel board-card">
+                    <div class="board-toolbar">
+                      <div class="segmented" aria-label="草稿分页">
+                        <button class="active" type="button" data-page="0">Page 1</button>
+                        <button type="button" data-page="1">Page 2</button>
+                      </div>
+                      <div class="tool-group" aria-label="笔刷粗细">
+                        <button class="active" type="button" data-size="2">细</button>
+                        <button type="button" data-size="5">中</button>
+                        <button type="button" data-size="8">粗</button>
+                      </div>
+                    </div>
+                    <div class="board-toolbar">
+                      <div class="tool-group" aria-label="颜色">
+                        <button class="swatch active" type="button" data-color="#1B1B1B" style="background:#1B1B1B;">黑</button>
+                        <button class="swatch" type="button" data-color="#A2B5A5" style="background:#A2B5A5;">绿</button>
+                        <button class="swatch" type="button" data-color="#EAC8D1" style="background:#EAC8D1;">粉</button>
+                      </div>
+                      <div class="tool-group">
+                        <button id="eraserBtn" type="button">橡皮</button>
+                        <button id="undoBtn" type="button">撤销</button>
+                        <button id="redoBtn" type="button">重做</button>
+                        <button id="clearBtn" type="button">清空</button>
+                      </div>
+                    </div>
+                    <div class="canvas-shell">
+                      <canvas id="board"></canvas>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="tab-page" id="knowledgePage">
+                <div class="hero-card" style="background:linear-gradient(135deg,#A2B5A5,#EAC8D1);">
+                  <b>Weak Points</b>
+                  <h4>薄弱点按“真实掌握”排序。</h4>
+                  <p>自评低于 2 星或标记靠蒙的题，会直接提高复习优先级。</p>
+                </div>
+                <div class="knowledge-list" id="knowledgeList"></div>
+              </section>
+
+              <section class="tab-page" id="wrongPage">
+                <div class="section-title">
+                  <span>思路错题本</span>
+                  <small id="wrongCount">0 条</small>
+                </div>
+                <div class="wrong-list" id="wrongList"></div>
+              </section>
+
+              <section class="tab-page" id="profilePage">
+                <div class="panel">
+                  <div class="section-title" style="margin-top:0;">
+                    <span>直播时间</span>
+                    <small>用于每日排期避让</small>
+                  </div>
+                  <div class="task locked">
+                    <time>09:00<br>11:00</time>
+                    <div>
+                      <h5>上午直播 / 兼职</h5>
+                      <p>计划生成时强制锁定</p>
+                    </div>
+                    <span class="pill">避让</span>
+                  </div>
+                  <div class="task locked" style="margin-top:10px;">
+                    <time>18:00<br>20:00</time>
+                    <div>
+                      <h5>晚间直播 / 兼职</h5>
+                      <p>不安排高负荷任务</p>
+                    </div>
+                    <span class="pill">避让</span>
+                  </div>
+                </div>
+
+                <div class="section-title">
+                  <span>手写讲义资料库</span>
+                  <button class="secondary" id="uploadBtn" type="button">上传资料</button>
+                </div>
+                <div class="library-list" id="libraryList"></div>
+              </section>
+            </div>
+
+            <nav class="dock" aria-label="底部导航">
+              <button class="nav active" type="button" data-tab="home"><strong>⌂</strong><span>首页</span></button>
+              <button class="nav" type="button" data-tab="practice"><strong>✎</strong><span>刷题</span></button>
+              <button class="nav" type="button" data-tab="knowledge"><strong>◎</strong><span>考点</span></button>
+              <button class="nav" type="button" data-tab="wrong"><strong>□</strong><span>错题</span></button>
+              <button class="nav" type="button" data-tab="profile"><strong>⚙</strong><span>我的</span></button>
+            </nav>
+
+            <div class="modal" id="diagnosisModal">
+              <div class="modal-card">
+                <h3>AI 思路把脉诊断</h3>
+                <div class="diagnosis-card">
+                  <b>直觉思维偏差起点</b>
+                  <p>第一步把 sin(x) 直接按 sin(x)≈x 处理，但等价无穷小替换要求变量趋近 0；本题 x 趋近 π。</p>
+                </div>
+                <div class="diagnosis-card" style="margin-top:10px;">
+                  <b>为何该直觉在这里不成立</b>
+                  <p>等价替换看的是整体变量的极限状态，不是看到某个函数名就替换。x→π 时，分母 x-π→0，但 sin(x) 并不等价于 x。</p>
+                </div>
+                <div class="diagnosis-card" style="margin-top:10px;">
+                  <b>正确思想路线转轨</b>
+                  <p>令 t=x-π，则 t→0，sin(x)=sin(t+π)=-sin(t)，原式转为 lim(t→0)-sin(t)/t=-1。</p>
+                </div>
+                <div class="diagnosis-card" style="margin-top:10px;">
+                  <b>避坑判定口诀</b>
+                  <p>先看趋近点，再换零变量；函数像熟人，条件要重审。</p>
+                </div>
+                <div class="modal-actions">
+                  <button class="secondary" id="closeModal" type="button">关闭</button>
+                  <button class="primary" id="saveWrong" type="button">归入错题本</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      activeTab: "home",
+      rating: 3,
+      currentPage: 0,
+      brushSize: 2,
+      brushColor: "#1B1B1B",
+      eraser: false,
+      pages: [
+        { strokes: [], undone: [] },
+        { strokes: [], undone: [] }
+      ],
+      wrongQuestions: [],
+      library: [
+        { title: "高数极限讲义 第三章.pdf", tag: "S级 · 等价无穷小", status: "已贴标" },
+        { title: "英语翻译长难句拍照上传.jpg", tag: "A级 · 从句拆分", status: "已解析" }
+      ],
+      knowledge: [
+        { title: "高数 · 等价无穷小替换条件", level: "D", weak: "严重", count: 5, mistake: "看到 sin / tan 就直接替换，未检查变量趋近点。" },
+        { title: "高数 · 定积分换元边界", level: "C", weak: "中等", count: 3, mistake: "换元后上下限未同步变换。" },
+        { title: "英语 · 翻译句子主干识别", level: "B", weak: "轻微", count: 2, mistake: "插入语过长时把修饰成分当主干。" }
+      ]
+    };
+
+    const titles = {
+      home: "今天先稳住保底分",
+      practice: "刷题中心",
+      quiz: "手写答题",
+      knowledge: "薄弱考点",
+      wrong: "思路错题本",
+      profile: "我的设置"
+    };
+
+    const schedule = [
+      { time: "07:10\n08:00", title: "英语翻译 2 句", desc: "低干扰任务，适合开播前完成", tag: "保底", locked: false },
+      { time: "09:00\n11:00", title: "直播 / 兼职锁定", desc: "系统不安排学习任务", tag: "避让", locked: true },
+      { time: "13:40\n15:10", title: "高数极限手写专练", desc: "提交草稿后做 AI 思路诊断", tag: "S级", locked: false },
+      { time: "16:20\n16:55", title: "错题本二刷", desc: "复练上次靠蒙做对的题", tag: "回流", locked: false },
+      { time: "18:00\n20:00", title: "直播 / 兼职锁定", desc: "仅保留轻量回看提醒", tag: "避让", locked: true },
+      { time: "21:20\n22:00", title: "讲义例题上传贴标", desc: "把讲义例题绑定到薄弱考点", tag: "资料", locked: false }
+    ];
+
+    const device = document.getElementById("device");
+    const canvas = document.getElementById("board");
+    const ctx = canvas.getContext("2d");
+    let drawing = false;
+    let currentStroke = null;
+    let toastTimer = null;
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("active");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("active"), 2300);
+    }
+
+    function renderSchedule() {
+      const list = document.getElementById("scheduleList");
+      list.innerHTML = schedule.map(item => `
+        <div class="task ${item.locked ? "locked" : ""}">
+          <time>${item.time.replace("\n", "<br>")}</time>
+          <div>
+            <h5>${item.title}</h5>
+            <p>${item.desc}</p>
+          </div>
+          <span class="pill">${item.tag}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderStars() {
+      const stars = document.getElementById("stars");
+      stars.innerHTML = "";
+      for (let i = 1; i <= 5; i += 1) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = "★";
+        btn.className = i <= state.rating ? "active" : "";
+        btn.addEventListener("click", () => {
+          state.rating = i;
+          renderStars();
+          if (i <= 2) showToast("已按薄弱点处理，题目会进入回流池");
+        });
+        stars.appendChild(btn);
+      }
+    }
+
+    function renderKnowledge() {
+      const list = document.getElementById("knowledgeList");
+      list.innerHTML = state.knowledge.map(k => `
+        <article class="list-card">
+          <div class="card-row">
+            <div>
+              <h4>${k.title}</h4>
+              <p>${k.mistake}</p>
+            </div>
+            <span class="pill">${k.weak} · ${k.level}</span>
+          </div>
+          <div class="rating-row">
+            <span class="pill">错题 ${k.count} 次</span>
+            <button class="secondary" type="button" data-start="考点变式">开始练习</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderWrongQuestions() {
+      const list = document.getElementById("wrongList");
+      const count = document.getElementById("wrongCount");
+      count.textContent = `${state.wrongQuestions.length} 条`;
+      if (!state.wrongQuestions.length) {
+        list.innerHTML = `
+          <article class="list-card">
+            <h4>暂无思路错题</h4>
+            <p>完成一次手写诊断后，这里会显示题目、错因、诊断结论和当时的草稿图。</p>
+          </article>
+        `;
+        return;
+      }
+      list.innerHTML = state.wrongQuestions.map((w, index) => `
+        <article class="list-card">
+          <div class="card-row">
+            <div>
+              <h4>${w.title}</h4>
+              <p>${w.reason}</p>
+            </div>
+            <span class="pill">${w.source}</span>
+          </div>
+          <div class="thumb">${w.image ? `<img src="${w.image}" alt="手写草稿" />` : "已保存草稿笔迹"}</div>
+          <div class="rating-row">
+            <button class="secondary" type="button" data-start="原题复练">原题复练</button>
+            <button class="primary" type="button" data-start="变式突破">生成 2 道变式</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderLibrary() {
+      const list = document.getElementById("libraryList");
+      list.innerHTML = state.library.map(item => `
+        <article class="list-card">
+          <div class="card-row">
+            <div>
+              <h4>${item.title}</h4>
+              <p>${item.tag}</p>
+            </div>
+            <span class="pill">${item.status}</span>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function setTab(tab) {
+      state.activeTab = tab;
+      document.querySelectorAll(".tab-page").forEach(page => page.classList.remove("active"));
+      document.getElementById(`${tab}Page`).classList.add("active");
+      document.querySelectorAll(".nav").forEach(btn => btn.classList.toggle("active", btn.dataset.tab === tab));
+      document.getElementById("pageTitle").textContent = titles[tab] || titles.home;
+      document.getElementById("content").scrollTop = 0;
+      if (tab === "quiz") {
+        setTimeout(resizeCanvas, 40);
+      }
+    }
+
+    function startQuiz(type) {
+      document.getElementById("quizType").textContent = type;
+      setTab("quiz");
+      showToast("已开启手写草稿记录");
+    }
+
+    function setMode(mode) {
+      const tablet = mode === "tablet";
+      device.classList.toggle("tablet", tablet);
+      document.getElementById("tabletMode").classList.toggle("active", tablet);
+      document.getElementById("phoneMode").classList.toggle("active", !tablet);
+      document.getElementById("currentModeLabel").textContent = tablet ? "iPad Split View" : "Tablet Ready";
+      setTimeout(resizeCanvas, 280);
+    }
+
+    function activePage() {
+      return state.pages[state.currentPage];
+    }
+
+    function getPoint(event) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+      };
+    }
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const dpr = Math.max(window.devicePixelRatio || 1, 1);
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      redraw();
+    }
+
+    function drawStroke(stroke) {
+      if (!stroke.points.length) return;
+      ctx.save();
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.lineWidth = stroke.size;
+      ctx.strokeStyle = stroke.eraser ? "#FBFDFB" : stroke.color;
+      ctx.beginPath();
+      ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+      for (let i = 1; i < stroke.points.length; i += 1) {
+        const prev = stroke.points[i - 1];
+        const point = stroke.points[i];
+        ctx.quadraticCurveTo(prev.x, prev.y, (prev.x + point.x) / 2, (prev.y + point.y) / 2);
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function redraw() {
+      const rect = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+      activePage().strokes.forEach(drawStroke);
+    }
+
+    function beginDraw(event) {
+      event.preventDefault();
+      drawing = true;
+      canvas.setPointerCapture(event.pointerId);
+      currentStroke = {
+        color: state.brushColor,
+        size: state.eraser ? Math.max(14, state.brushSize * 3) : state.brushSize,
+        eraser: state.eraser,
+        points: [getPoint(event)]
+      };
+      activePage().undone = [];
+      document.body.style.overflow = "hidden";
+    }
+
+    function moveDraw(event) {
+      if (!drawing || !currentStroke) return;
+      event.preventDefault();
+      currentStroke.points.push(getPoint(event));
+      redraw();
+      drawStroke(currentStroke);
+    }
+
+    function endDraw(event) {
+      if (!drawing || !currentStroke) return;
+      event.preventDefault();
+      activePage().strokes.push(currentStroke);
+      currentStroke = null;
+      drawing = false;
+      document.body.style.overflow = "";
+    }
+
+    function addWrongQuestion() {
+      const image = canvas.toDataURL("image/png");
+      const source = document.getElementById("guessSwitch").checked ? "靠蒙回流" : state.rating <= 2 ? "低自评回流" : "AI诊断";
+      state.wrongQuestions.unshift({
+        title: "lim(x→π) sin(x)/(x-π)",
+        reason: "第一步误用 sin(x)≈x，未先把变量换到趋近 0 的场景。",
+        source,
+        image
+      });
+      state.knowledge[0].count += 1;
+      state.knowledge[0].level = "D";
+      state.knowledge[0].weak = "严重";
+      renderWrongQuestions();
+      renderKnowledge();
+      showToast("已归入错题本并保存当前手写草稿");
+    }
+
+    function bindEvents() {
+      document.getElementById("phoneMode").addEventListener("click", () => setMode("phone"));
+      document.getElementById("tabletMode").addEventListener("click", () => setMode("tablet"));
+
+      document.querySelectorAll(".nav").forEach(btn => {
+        btn.addEventListener("click", () => setTab(btn.dataset.tab));
+      });
+
+      document.body.addEventListener("click", event => {
+        const start = event.target.closest("[data-start]");
+        if (start) startQuiz(start.dataset.start);
+      });
+
+      document.getElementById("exitQuiz").addEventListener("click", () => setTab("practice"));
+      document.getElementById("submitAnswer").addEventListener("click", () => {
+        document.getElementById("analysisBox").classList.add("active");
+        showToast("答案已核对，可开始思路诊断");
+      });
+      document.getElementById("runDiagnosis").addEventListener("click", () => {
+        document.getElementById("diagnosisModal").classList.add("active");
+      });
+      document.getElementById("closeModal").addEventListener("click", () => {
+        document.getElementById("diagnosisModal").classList.remove("active");
+      });
+      document.getElementById("saveWrong").addEventListener("click", () => {
+        document.getElementById("diagnosisModal").classList.remove("active");
+        addWrongQuestion();
+        setTab("wrong");
+      });
+
+      document.getElementById("guessSwitch").addEventListener("change", event => {
+        if (event.target.checked) showToast("已标记靠蒙，该题会降权并回流");
+      });
+
+      document.querySelectorAll("[data-page]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-page]").forEach(item => item.classList.remove("active"));
+          btn.classList.add("active");
+          state.currentPage = Number(btn.dataset.page);
+          redraw();
+        });
+      });
+
+      document.querySelectorAll("[data-size]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-size]").forEach(item => item.classList.remove("active"));
+          btn.classList.add("active");
+          state.brushSize = Number(btn.dataset.size);
+        });
+      });
+
+      document.querySelectorAll("[data-color]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-color]").forEach(item => item.classList.remove("active"));
+          btn.classList.add("active");
+          state.brushColor = btn.dataset.color;
+          state.eraser = false;
+          document.getElementById("eraserBtn").classList.remove("active");
+        });
+      });
+
+      document.getElementById("eraserBtn").addEventListener("click", event => {
+        state.eraser = !state.eraser;
+        event.currentTarget.classList.toggle("active", state.eraser);
+      });
+
+      document.getElementById("undoBtn").addEventListener("click", () => {
+        const page = activePage();
+        const stroke = page.strokes.pop();
+        if (stroke) page.undone.push(stroke);
+        redraw();
+      });
+
+      document.getElementById("redoBtn").addEventListener("click", () => {
+        const page = activePage();
+        const stroke = page.undone.pop();
+        if (stroke) page.strokes.push(stroke);
+        redraw();
+      });
+
+      document.getElementById("clearBtn").addEventListener("click", () => {
+        activePage().strokes = [];
+        activePage().undone = [];
+        redraw();
+      });
+
+      document.getElementById("uploadBtn").addEventListener("click", () => {
+        state.library.unshift({
+          title: `讲义拍照上传_${new Date().toLocaleDateString("zh-CN")}.jpg`,
+          tag: "S级 · 极限换元",
+          status: "已解析"
+        });
+        renderLibrary();
+        showToast("资料已上传并完成考点贴标");
+      });
+
+      canvas.addEventListener("pointerdown", beginDraw);
+      canvas.addEventListener("pointermove", moveDraw);
+      canvas.addEventListener("pointerup", endDraw);
+      canvas.addEventListener("pointercancel", endDraw);
+      window.addEventListener("resize", resizeCanvas);
+    }
+
+    function init() {
+      renderSchedule();
+      renderStars();
+      renderKnowledge();
+      renderWrongQuestions();
+      renderLibrary();
+      bindEvents();
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("view") === "tablet") setMode("tablet");
+      resizeCanvas();
+    }
+
+    init();
+  </script>
+</body>
+</html>
